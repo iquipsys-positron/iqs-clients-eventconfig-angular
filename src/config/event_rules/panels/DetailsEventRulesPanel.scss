@@ -1,0 +1,52 @@
+.iqs-rule {
+    .iqs-event-rule-details {
+        .entry-empty-label {
+            padding: 32px 0px;
+            text-align: center;
+        }
+        .entry-label {
+            text-overflow: hidden;
+        }
+        .pip-ref-title {
+            .big-icon {
+                width: 48px;
+                height: 48px;
+                margin-right: 16px;
+                md-icon {
+                    width: 48px;
+                    height: 48px;
+                }
+            }
+        }
+        .iqs-rule-condition-list.pip-ref-list,
+        .iqs-rule-action-list.pip-ref-list {
+            .pip-ref-list-item,
+            .pip-ref-item {
+                max-width: 100%;
+                .pip-content {
+                    padding-top: 8px !important;
+                    padding-bottom: 8px !important;
+                    max-width: 100%; // .pip-subtitle {
+                    //     font-size: 12px;
+                    // }
+                    .pip-subhead1 {
+                        padding-bottom: 2px !important;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+        .pip-ref-list-entity {
+            .iqs-icon {
+                margin-right: -8px !important;
+            }
+            .pip-content {
+                max-width: calc(100% - 104px);
+            }
+            .pip-title.iqs-single-title {
+                padding-top: 26px;
+                padding-bottom: 25px;
+            }
+        }
+    }
+}

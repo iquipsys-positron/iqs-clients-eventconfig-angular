@@ -1,0 +1,83 @@
+<pip-document>
+	<div class="pip-body lp24 rp24 tp24 bp24 layout-column flex">
+		<div class="pip-ref-title layout-row layout-align-start-center bm8">
+			<div class="pip-content">
+				<p class="pip-title">
+					{{ $ctrl.item.resolution }}
+				</p>
+				<p class="pip-subtitle" ng-if="$ctrl.item.default">
+					{{ ::'RESOLUTION_DEFAULT_LABEL' | translate }}
+				</p>
+			</div>
+		</div>
+		<div ng-if="$ctrl.resolutionEventRules && $ctrl.resolutionEventRules.length > 0">
+			<div class="pip-subtitle tm16 color-secondary-text">
+				{{ ::'RESOLUTION_RULES_LABEL' | translate }}
+			</div>
+			<div class="iqs-rules-list w-stretch">
+				<div class="iqs-rules-list-item layout-row layout-align-start-center w-stretch" ng-repeat="rule in $ctrl.resolutionEventRules track by $index">
+
+					<div class="rm16 flex-fixed">
+						<md-icon md-svg-icon="{{ $ctrl.severityCollection[rule.severity].icon }}" class="{{ $ctrl.severityCollection[rule.severity].class }}">
+						</md-icon>
+					</div>
+					<div class="pip-content layout-row layout-align-start-center flex" ng-class="{ 'divider-bottom' : !$last }">
+						<p class="text-body2 text-overflow flex">
+							{{ rule.name }}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div ng-if="!$ctrl.resolutionEventRules || $ctrl.resolutionEventRules.length == 0">
+			<!-- <div class="pip-subtitle color-secondary-text tm16 bm24">
+				{{ ::'RESOLUTION_RULES_LABEL' | translate }}
+			</div>
+			<div class="pip-subtitle layout-column layout-align-center-center">
+				<p>
+					{{ ::'RESOLUTIONS_RULES_EMPTY' | translate }}
+				</p>
+				<md-button class="color-accent-bg" 
+					xxxng-if="$ctrl.accessConfig.addResolution" 
+					ng-click="$ctrl.onEdit()" 
+					ng-disabled="$ctrl.ngDisabled() || !$ctrl.accessConfig.addResolution">
+
+					{{ ::'RESOLUTIONS_RULES_EMPTY_BUTTON' | translate }}
+				</md-button>
+			</div> -->
+			<div class="pip-subtitle color-secondary-text tm16 bm24">
+				{{ ::'RESOLUTION_RULES_LABEL' | translate }}
+			</div>
+			<div class="pip-subtitle layout-column layout-align-center-center">
+				<p>
+					{{ ::'RESOLUTION_RULES_APLAY_ALL_LABEL' | translate }}
+				</p>
+				<md-button class="color-accent-bg" xxxng-if="$ctrl.accessConfig.addResolution" ng-click="$ctrl.onEdit()"
+				           ng-disabled="$ctrl.ngDisabled() || !$ctrl.accessConfig.addResolution">
+
+					{{ ::'RESOLUTIONS_RULES_EMPTY_BUTTON' | translate }}
+				</md-button>
+			</div>
+		</div>
+	</div>
+	<div class="pip-footer " style="height: 86px">
+		<div class="pip-action-list w-stretch">
+			<md-button iqs-test-edit class="pip-action-list-item" xxxng-if="$ctrl.accessConfig.editResolution" ng-click="$ctrl.onEdit()"
+			           ng-disabled="$ctrl.ngDisabled() || !$ctrl.accessConfig.editResolution">
+
+				<md-icon class="pip-pic" md-svg-icon="icons:pen"></md-icon>
+				<div class="pip-title">
+					{{ ::'RESOLUTION_EDIT' | translate }}
+				</div>
+			</md-button>
+			<md-button iqs-test-delete class="pip-action-list-item" xxxng-if="$ctrl.accessConfig.deleteResolution" ng-click="$ctrl.onDelete()"
+			           ng-disabled="$ctrl.ngDisabled() || !$ctrl.accessConfig.deleteResolution">
+
+				<md-icon class="pip-pic" md-svg-icon="icons:trash"></md-icon>
+				<div class="pip-title">
+					{{ ::'RESOLUTION_DELETE' | translate}}
+				</div>
+			</md-button>
+		</div>
+	</div>
+</pip-document>

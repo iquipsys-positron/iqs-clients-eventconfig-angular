@@ -1,0 +1,80 @@
+<pip-document>
+	<div class="pip-body p24  layout-column flex">
+		<div ng-show="$ctrl.error" class="pip-page-errors">
+			<span class="pip-error-text color-error flex"> {{ $ctrl.error | translate }}</span>
+			<md-icon md-svg-icon="icons:warn-circle" class="color-error"></md-icon>
+		</div>
+
+		<md-input-container class="md-block bm0">
+			<label>{{ ::'RESOLUTION_LABEL' | translate }}</label>
+			<textarea iqs-test-name ng-model="$ctrl.resolution.resolution" aria-label="DESCRIPTION" md-select-on-focus
+			          xxxng-disabled="$ctrl.ngDisabled()">
+
+            </textarea>
+		</md-input-container>
+
+		<div class="h48 layout-row layout-align-start-center">
+			<div class="flex">
+				{{ ::'RESOLUTION_DEFAULT_LABEL' | translate }}
+			</div>
+			<md-switch iqs-test-default class="flex-fixed tm0 bm0" ng-model="$ctrl.resolution.default" aria-label="DEFAULT_RESOLUTION"
+			           ng-disabled="$ctrl.ngDisabled()">
+
+			</md-switch>
+		</div>
+
+		<div class="h48 layout-row layout-align-start-center">
+			<div class="flex">
+				{{ ::'RESOLUTION_CHECK_LABEL' | translate }}
+			</div>
+			<md-switch iqs-test-default class="flex-fixed tm0 bm0" ng-model="$ctrl.checkResolution" aria-label="CHECK_RESOLUTION"
+			           ng-disabled="$ctrl.ngDisabled()">
+
+			</md-switch>
+		</div>
+
+		<div ng-if="$ctrl.checkResolution">
+			<div class="pip-subtitle tm24 bm8 color-secondary-text">
+				{{ ::'RESOLUTION_RULES_LABEL' | translate }}
+			</div>
+			<div class="iqs-rules-list w-stretch">
+				<div class="iqs-rules-list-item layout-row layout-align-start-center w-stretch" md-ink-ripple ng-repeat="rule in $ctrl.resolutionEventRules track by $index">
+
+					<div class="rm16 flex-fixed">
+						<md-icon md-svg-icon="{{ $ctrl.severityCollection[rule.severity].icon }}" class="{{ $ctrl.severityCollection[rule.severity].class }}">
+						</md-icon>
+					</div>
+					<div class="pip-content divider-bottom layout-row layout-align-start-center flex">
+						<p class="text-body2 text-overflow flex rm16">
+							{{ rule.name }}
+						</p>
+						<md-switch iqs-test-rule class="flex-fixed m0" ng-model="rule.checked" aria-label="SET_RULE" ng-disabled="$ctrl.ngDisabled()"
+						           ng-change="$ctrl.onEventRuleChange()">
+						</md-switch>
+					</div>
+				</div>
+			</div>
+			<div class="layout-row layout-align-start-center">
+				<div class="rm16 flex">
+					{{ ::'RESOLUTION_EVENT_RULE_SELECT_ALL' | translate }}
+				</div>
+				<md-switch iqs-test-select-all class="flex-fixed" ng-model="$ctrl.selectAll" aria-label="SELECT_ALL" ng-disabled="$ctrl.ngDisabled()"
+				           ng-change="$ctrl.onSelectAllChange()">
+
+				</md-switch>
+			</div>
+		</div>
+	</div>
+	<div class="pip-footer " style="height: 86px">
+		<div class="pip-action-list w-stretch">
+			<md-button iqs-test-save class="pip-action-list-item" ng-click="$ctrl.onSaveClick()" ng-disabled="$ctrl.ngDisabled() || !$ctrl.resolution.resolution">
+				<md-icon class="pip-pic" md-svg-icon="icons:check"></md-icon>
+				<div class="pip-title">{{::'RESOLUTION_SAVE' | translate }}</div>
+			</md-button>
+			<md-button iqs-test-cancel class="pip-action-list-item" ng-click="$ctrl.onCancelClick()" ng-disabled="$ctrl.ngDisabled()">
+				<md-icon class="pip-pic" md-svg-icon="icons:cross"></md-icon>
+				<div class="pip-title">{{::'RESOLUTION_CANCEL' | translate}}</div>
+			</md-button>
+		</div>
+	</div>
+</pip-document>

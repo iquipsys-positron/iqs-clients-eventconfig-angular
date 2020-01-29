@@ -1,0 +1,55 @@
+<md-switch ng-model="$ctrl.item.all_zones" aria-label="set_time" xxxng-if="$ctrl.accessConfig.editEventRule" ng-change="$ctrl.onChange()"
+           ng-disabled="$ctrl.ngDisabled() || !$ctrl.accessConfig.editEventRule">
+    {{ ::'RULES_ALL_ZONES' | translate }}
+</md-switch>
+
+<div class="entry-label color-secondary-text tm16 bm16">
+    {{ 'RULES_INCLUDE_ZONES_LABEL' | translate }}
+</div>
+<div class="pip-ref-list pip-ref-list-entity" ng-if="$ctrl.zonesInclude.length > 0 && !$ctrl.item.all_zones">
+    <div class="pip-ref-list-item  layout-row layout-align-start-center " ng-repeat="zone in $ctrl.zonesInclude track by $index">
+        <pip-avatar pip-id="zone.id" pip-rebind="true" pip-name="zone.name" class="pip-face tm8 bm8 rm16">
+        </pip-avatar>
+        <div class="pip-content rm16">
+            <p class="pip-title">
+                {{ zone.name }}
+            </p>
+        </div>
+        <div class="iqs-icon">
+            <md-button class="md-icon-button m0" xxxng-if="$ctrl.accessConfig.editEventRule" ng-disabled="$ctrl.ngDisabled() || !$ctrl.accessConfig.editEventRule"
+                       aria-label="DELETE-ZONE" ng-click="$ctrl.onDeleteEntry('zonesInclude', zone)">
+
+                <md-icon md-svg-icon="icons:cross"></md-icon>
+                <md-button>
+        </div>
+    </div>
+</div>
+<div class="entry-empty-label" ng-if="$ctrl.zonesInclude.length == 0  && !$ctrl.item.all_zones">
+    {{ 'RULES_INCLUDE_ZONES_EMPTY_LABEL' | translate }}
+</div>
+<div class="entry-empty-label" ng-if="$ctrl.zonesInclude.length == 0  && $ctrl.item.all_zones">
+    {{ 'RULES_INCLUDE_ZONES_EMPTY_LABEL_ALL' | translate }}
+</div>
+
+
+<div class="entry-label color-secondary-text tm16 bm16" ng-if="$ctrl.zonesExclude.length > 0">
+    {{ 'RULES_EXCLUDE_ZONES_LABEL' | translate }}
+</div>
+<div class="pip-ref-list pip-ref-list-entity" ng-if="$ctrl.zonesExclude.length > 0">
+    <div class="pip-ref-list-item  layout-row layout-align-start-center  " ng-repeat="zone in $ctrl.zonesExclude track by $index">
+        <pip-avatar pip-id="zone.id" pip-rebind="true" pip-name="zone.name" class="pip-face tm8 bm8  rm16">
+        </pip-avatar>
+        <div class="pip-content rm16">
+            <p class="pip-title">
+                {{ zone.name }}
+            </p>
+        </div>
+        <div class="iqs-icon">
+            <md-button class="md-icon-button m0" xxxng-if="$ctrl.accessConfig.editEventRule" ng-disabled="$ctrl.ngDisabled() || !$ctrl.accessConfig.editEventRule"
+                       aria-label="DELETE-ZONE" ng-click="$ctrl.onDeleteEntry('zonesExclude', zone)">
+
+                <md-icon md-svg-icon="icons:cross"></md-icon>
+                <md-button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+@import './panels/DetailsEventRulesPanel';
+@import './panels/EventRulesEmptyPanel';
+@import './panels/InformationEditEventRulesPanel';
+.iqs-rule {
+    .pip-ref-list,
+        {
+        .pip-ref-list-item,
+        .pip-ref-item {
+            max-width: 100%;
+            .pip-content {
+                .text-caption {
+                    color: rgba(0, 0, 0, 0.54);
+                }
+            }
+            .pip-subtitle {
+                margin: 0px;
+            }
+        }
+    }
+    .iqs-rule-list {
+        .pip-ref-list-item,
+        .pip-ref-item {
+            max-width: 100%;
+            .pip-content {
+                max-width: calc(100% - 92px);
+                padding-bottom: 20px !important;
+                padding-top: 19px !important;
+                .text-caption {
+                    color: rgba(0, 0, 0, 0.54);
+                }
+            }
+            .pip-subtitle {
+                margin-bottom: 0px !important;
+            }
+            .content-details.pip-content {
+                padding-bottom: 11px !important;
+                padding-top: 11px !important;
+            }
+            .pip-subtitle {
+                margin: 0px;
+            }
+        }
+    }
+}
+
+.pip-xs,
+.pip-sm {
+    .iqs-rule-list {
+        md-list-item.pip-selectable.pip-ref-list-item.selected {
+            padding-left: 16px !important;
+            background-color: rgb(236, 236, 236);
+            border-left: 5px solid rgb(236, 236, 236) !important;
+        }
+    }
+}

@@ -1,0 +1,214 @@
+<pip-document>
+	<md-progress-linear md-mode="indeterminate" style="position: absolute;" ng-show="$ctrl.ngDisabled()"></md-progress-linear>
+	<div class="pip-body p24  layout-column flex">
+
+
+		<form name="form" novalidate>
+			<div ng-show="$ctrl.error" class="pip-page-errors">
+				<span class="pip-error-text color-error flex"> {{ $ctrl.error | translate }}</span>
+				<md-icon md-svg-icon="icons:warn-circle" class="color-error"></md-icon>
+			</div>
+
+			<md-input-container class="md-block bm8">
+				<label>{{ ::'EVENT_RULE_NAME_LABEL' | translate }}</label>
+				<textarea iqs-test-name ng-model="$ctrl.rule.name" aria-label="NAME" md-select-on-focus ng-disabled="$ctrl.ngDisabled()"
+				          name="ruleName" required iqs-unique-validator iqs-unique-collection="$ctrl.nameCollection">
+
+                </textarea>
+
+				<div ng-messages="$ctrl.touchedErrorsWithHint($ctrl.form, $ctrl.form.ruleName)" role="alert">
+					<div ng-message="required">{{ 'EVENT_RULE_NAME_REQUIRED_ERROR' | translate }}</div>
+					<div ng-message="uniqueValidate">{{ 'EVENT_RULE_NAME_UNIQUE_ERROR' | translate }}</div>
+				</div>
+			</md-input-container>
+
+			<md-input-container class="md-block tm8">
+				<label>{{ ::'EVENT_RULE_SEVERITY_LABEL' | translate }}</label>
+				<md-select iqs-test-severity class="flex" aria-label="SEVERITY" ng-model="$ctrl.rule.severity" ng-disabled="$ctrl.ngDisabled()"
+				           style="margin-bottom: 21px;">
+					<md-option iqs-test-option-severity ng-repeat="obj in $ctrl.severityCollection  track by $index" ng-value="obj.id">
+						{{ obj.title | translate }}
+					</md-option>
+				</md-select>
+			</md-input-container>
+
+			<md-input-container class="md-block bm8">
+				<label>{{::'EVENT_RULE_INTERVAL_LABEL' | translate }}</label>
+				<input iqs-test-interval ng-model="$ctrl.rule.interval" aria-label="INTERVEL" ng-change="$ctrl.error=''"
+				       ng-disabled="$ctrl.ngDisabled()" required ng-pattern="/^[0-9]{1,4}$/" name="interval" type="number" />
+
+				<div ng-messages="$ctrl.touchedErrorsWithHint($ctrl.form, $ctrl.form.interval)" role="alert">
+					<div ng-message="required">{{ 'EVENT_RULE_CONDITIONAL_INTERVAL_REQUIRED_ERROR' | translate }}</div>
+					<div ng-message="pattern">{{ 'EVENT_RULE_CONDITIONAL_INTERVAL_NOTVALID_ERROR' | translate }}</div>
+				</div>
+			</md-input-container>
+
+			<md-input-container class="md-block tm8">
+				<label>{{ ::'EVENT_RULE_TYPE_LABEL' | translate }}</label>
+				<md-select iqs-test-type class="flex" aria-label="TYPE" ng-model="$ctrl.rule.type" ng-disabled="$ctrl.ngDisabled()"
+				           ng-change="$ctrl.error=''" required placeholder="{{ ::'EVENT_RULE_SELECT_TYPE_PLACEHOLDER' | translate }}"
+				           name="ruleType" style="margin-bottom: 21px;">
+					<md-option iqs-test-option-type ng-repeat="t in $ctrl.typeCollection  track by $index" ng-value="t.id">
+						{{ t.title | translate }}
+					</md-option>
+				</md-select>
+
+				<div ng-messages="$ctrl.touchedErrorsWithHint($ctrl.form, $ctrl.form.ruleType)" role="alert">
+					<div ng-message="required">{{ 'EVENT_RULE_TYPE_REQUIRED_ERROR' | translate }}</div>
+				</div>
+			</md-input-container>
+
+			<md-input-container class="md-block" ng-if="$ctrl.rule.type == 'max speed'">
+				<label>{{ $ctrl.getConditionLabel() }} ({{ $ctrl.ruleTypeMeasure[$ctrl.rule.type].title | translate }})</label>
+				<input iqs-test-value ng-model="$ctrl.conditionMaxSpeed" ng-change="$ctrl.error=''" required ng-pattern="/^[0-9]{1,3}$/"
+				       name="conditionMaxSpeed" />
+
+				<div ng-messages="$ctrl.touchedErrorsWithHint($ctrl.form, $ctrl.form.conditionMaxSpeed)" role="alert">
+					<div ng-message="required">{{ 'EVENT_RULE_CONDITIONAL_MAX_SPEED_REQUIRED_ERROR' | translate }}</div>
+					<div ng-message="pattern">{{ 'EVENT_RULE_CONDITIONAL_MAX_SPEED_NOTVALID_ERROR' | translate }}</div>
+				</div>
+			</md-input-container>
+
+			<md-input-container class="md-block" ng-if="$ctrl.rule.type == 'min speed'">
+				<label>{{ $ctrl.getConditionLabel() }} ({{ $ctrl.ruleTypeMeasure[$ctrl.rule.type].title | translate }})</label>
+				<input iqs-test-value ng-model="$ctrl.conditionMinSpeed" ng-change="$ctrl.error=''" required ng-pattern="/^[0-9]{1,3}$/"
+				       name="conditionMinSpeed" />
+
+				<div ng-messages="$ctrl.touchedErrorsWithHint($ctrl.form, $ctrl.form.conditionMinSpeed)" role="alert">
+					<div ng-message="required">{{ 'EVENT_RULE_CONDITIONAL_MIN_SPEED_REQUIRED_ERROR' | translate }}</div>
+					<div ng-message="pattern">{{ 'EVENT_RULE_CONDITIONAL_MIN_SPEED_NOTVALID_ERROR' | translate }}</div>
+				</div>
+			</md-input-container>
+
+			<md-input-container class="md-block" ng-if="$ctrl.rule.type == 'immobility'">
+				<label>{{ $ctrl.getConditionLabel() }} ({{ $ctrl.ruleTypeMeasure[$ctrl.rule.type].title | translate }})</label>
+				<input iqs-test-value ng-model="$ctrl.conditionImmobility" ng-change="$ctrl.error=''" required ng-pattern="/^[0-9]{1,3}$/"
+				       name="conditionImmobility" />
+
+				<div ng-messages="$ctrl.touchedErrorsWithHint($ctrl.form, $ctrl.form.conditionImmobility)" role="alert">
+					<div ng-message="required">{{ 'EVENT_RULE_CONDITIONAL_IMMOBILITY_REQUIRED_ERROR' | translate }}</div>
+					<div ng-message="pattern">{{ 'EVENT_RULE_CONDITIONAL_IMMOBILITY_NOTVALID_ERROR' | translate }}</div>
+				</div>
+			</md-input-container>
+
+			<md-input-container class="md-block" ng-if="$ctrl.rule.type == 'presence'">
+				<label>{{ $ctrl.getConditionLabel() }} ({{ $ctrl.ruleTypeMeasure[$ctrl.rule.type].title | translate }})</label>
+				<input iqs-test-value ng-model="$ctrl.conditionPresence" ng-change="$ctrl.error=''" required ng-pattern="/^[0-9]{1,3}$/"
+				       md-maxlength="4" name="conditionPresence" />
+
+				<div ng-messages="$ctrl.touchedErrorsWithHint($ctrl.form, $ctrl.form.conditionPresence)" role="alert">
+					<div ng-message="required">{{ 'EVENT_RULE_CONDITIONAL_PRESENCE_REQUIRED_ERROR' | translate }}</div>
+					<div ng-message="pattern">{{ 'EVENT_RULE_CONDITIONAL_PRESENCE_NOTVALID_ERROR' | translate }}</div>
+				</div>
+			</md-input-container>
+
+			<div class="entry-label color-secondary-text">
+				{{ 'RULES_ACTIONS_LABEL' | translate }}
+			</div>
+
+			<div class="divider-bottom">
+				<md-switch iqs-test-event class="" ng-model="$ctrl.rule.show_journal" aria-label="SHOW_IN_JOURNAL" ng-disabled="$ctrl.ngDisabled()">
+					{{ ::'RULES_REGISTRY_EVENT_LABEL' | translate }}
+				</md-switch>
+			</div>
+
+			<div class="divider-bottom">
+				<md-switch iqs-test-incident class="" ng-model="$ctrl.rule.incident" aria-label="INCIDENT" ng-disabled="$ctrl.ngDisabled()">
+					{{ ::'EVENT_RULE_INCIDENT_LABEL' | translate }}
+				</md-switch>
+			</div>
+
+			<div class="divider-bottom layout-column">
+				<md-switch iqs-test-send-signal class="" ng-model="$ctrl.rule.send_signal" aria-label="SEND_SIGNAL" ng-disabled="$ctrl.ngDisabled()">
+					{{ ::'EVENT_RULE_SEND_SIGNAL_LABEL' | translate }}
+				</md-switch>
+
+				<md-input-container class="md-block tm0" ng-if="$ctrl.rule.send_signal">
+					<label>{{ ::'EVENT_RULE_SIGNAL_TYPE_LABEL' | translate }}</label>
+					<md-select iqs-test-select-signal class="flex" aria-label="TYPE" ng-model="$ctrl.rule.signal" ng-disabled="$ctrl.ngDisabled()"
+					           ng-change="$ctrl.error=''" ng-required="$ctrl.rule.send_signal" placeholder="{{ ::'EVENT_RULE_SELECT_SIGNAL_TYPE_PLACEHOLDER' | translate }}"
+					           name="signalType">
+						<md-option iqs-test-option-signal ng-repeat="t in $ctrl.signalTypeCollection  track by $index" ng-value="t.id">
+							{{ t.title | translate }}
+						</md-option>
+					</md-select>
+
+					<div ng-messages="$ctrl.touchedErrorsWithHint($ctrl.form, $ctrl.form.signalType)" role="alert">
+						<div ng-message="required">{{ 'EVENT_RULE_SIGNAL_TYPE_REQUIRED_ERROR' | translate }}</div>
+					</div>
+				</md-input-container>
+			</div>
+
+			<!-- <div class="divider-bottom layout-column">
+				<md-switch iqs-test-send-email class="" ng-model="$ctrl.rule.send_email" aria-label="SEND_EMAiLS" ng-disabled="$ctrl.ngDisabled()">
+					{{ ::'EVENT_RULE_SEND_EMAILS_LABEL' | translate }}
+				</md-switch>
+				<md-input-container class="md-block tm0" ng-if="$ctrl.rule.send_email">
+					<label>{{::'EVENT_RULE_EMAILS_LABEL' | translate }}</label>
+					<input iqs-test-email ng-model="$ctrl.emails" name="emails" aria-label="EMAILS" ng-disabled="$ctrl.ngDisabled()" 
+						ng-change="$ctrl.onChangeEmail()"  ng-required="$ctrl.rule.send_email"/>
+
+					<div ng-messages="$ctrl.form.emails.$error" role="alert" >
+						<div ng-message="required" class="my-message">{{ 'EVENT_RULE_EMAILS_REQUIRED_ERROR' | translate }}</div>
+						<div ng-message="iqsEmailValidator" class="my-message">{{ $ctrl.emailValidateError }} {{ 'EVENT_RULE_EMAIL_VALIDATOR_ERROR' | translate }}</div>
+					</div>					
+				</md-input-container>
+			</div> -->
+
+			<!-- <div class="layout-column">
+				<md-switch iqs-test-send-sms class="" ng-model="$ctrl.rule.send_sms" aria-label="SEND_SMS" ng-disabled="$ctrl.ngDisabled()">
+					{{ ::'EVENT_RULE_SEND_SMS_LABEL' | translate }}
+				</md-switch>
+				<md-input-container class="md-block tm0" ng-if="$ctrl.rule.send_sms">
+					<label>{{::'EVENT_RULE_SMS_LABEL' | translate }}</label>
+					<input iqs-test-sms ng-model="$ctrl.phones" name="phones" aria-label="PHONES" ng-disabled="$ctrl.ngDisabled()" 
+                        ng-change="$ctrl.onChangePhone()" ng-required="$ctrl.rule.send_sms"/>
+
+					<div ng-messages="$ctrl.form.phones.$error" role="alert" >
+						<div ng-message="required" class="my-message">{{ 'EVENT_RULE_SMS_REQUIRED_ERROR' | translate }}</div>
+						<div ng-message="iqsPhoneValidator" class="my-message">{{ $ctrl.phoneValidateError }} {{ 'EVENT_RULE_PHONE_VALIDATOR_ERROR' | translate }}</div>
+					</div>					
+				</md-input-container>
+			</div> -->
+
+			<!-- todo -->
+			<div class="layout-column">
+				<md-switch class="" ng-model="$ctrl.rule.send_message" aria-label="SEND_EMAiLS" ng-disabled="$ctrl.ngDisabled()">
+					{{ ::'EVENT_RULE_SEND_MESSAGES' | translate }}
+				</md-switch>
+				<div class="bm16">
+					<md-chips ng-model="$ctrl.objectInclude" class="display flex" ng-disabled="$ctrl.ngDisabled() "
+					          md-autocomplete-snap md-require-match="true">
+						<md-autocomplete ng-disabled="$ctrl.ngDisabled() || !$ctrl.rule.send_message" class="text-subhead1 flex" md-items="chip in $ctrl.getVariantsInclude($ctrl.includeSearch)"
+						                 md-selected-item='chip' md-search-text="$ctrl.includeSearch" md-menu-class="iqs-global-search-menu"
+						                 placeholder="{{ ::'RULES_SEND_MESSAGES_PLACEHOLDER' | translate }}">
+							<span md-highlight-text="$ctrl.includeSearch">{{ chip.name }}</span>
+							<md-item-template>
+								{{ chip.name }}
+							</md-item-template>
+						</md-autocomplete>
+						<md-chip-template class="layout-row rm8">
+							<pip-avatar class="pip-face rm8" pip-rebind="true" pip-id="$chip.id" pip-name="$chip.name">
+							</pip-avatar>
+							<span>
+								{{ $chip.name }}
+							</span>
+						</md-chip-template>
+					</md-chips>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="pip-footer " style="height: 86px">
+		<div class="pip-action-list w-stretch">
+			<md-button iqs-test-save class="pip-action-list-item" ng-click="$ctrl.onSaveClick()" ng-disabled="$ctrl.ngDisabled()">
+				<md-icon class="pip-pic" md-svg-icon="icons:check"></md-icon>
+				<div class="pip-title">{{'SAVE' | translate }}</div>
+			</md-button>
+			<md-button iqs-test-cancel class="pip-action-list-item" ng-click="$ctrl.onCancelClick()" ng-disabled="$ctrl.ngDisabled()">
+				<md-icon class="pip-pic" md-svg-icon="icons:cross"></md-icon>
+				<div class="pip-title">{{'CANCEL' | translate}}</div>
+			</md-button>
+		</div>
+	</div>
+</pip-document>

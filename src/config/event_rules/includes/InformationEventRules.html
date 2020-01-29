@@ -1,0 +1,131 @@
+<div class="pip-ref-list iqs-rule-condition-list">
+    <div class="pip-ref-list-item layout-row layout-align-start-center">
+        <div class="rm8">
+            <md-icon md-svg-icon="icons:tag">
+            </md-icon>
+        </div>
+        <div class="pip-content ">
+            <p class="pip-subhead1">
+                {{ $ctrl.ruleType[$ctrl.item.type].title | translate }}
+            </p>
+            <p class="pip-subtitle  color-secondary-text">
+                {{ 'EVENT_RULE_TYPE_LABEL' | translate }}
+            </p>
+        </div>
+    </div>
+    <div class="pip-ref-list-item layout-row layout-align-start-center" ng-if="$ctrl.item.condition.conditionString">
+        <div class="rm8">
+            <md-icon md-svg-icon="iqs:rules">
+            </md-icon>
+        </div>
+        <div class="pip-content ">
+            <p class="pip-subhead1">
+                {{ $ctrl.item.condition.conditionString }} {{ $ctrl.ruleTypeMeasure[$ctrl.item.type].title | translate
+                }}
+            </p>
+            <p class="pip-subtitle color-secondary-text">
+                {{ $ctrl.item.condition.conditionName | translate }}
+            </p>
+        </div>
+    </div>
+    <div class="layout-row layout-align-start-center iqs-inform-panel pip-ref-list-item">
+        <md-icon md-svg-icon="icons:key" class="iqs-icon lm0 rm16"></md-icon>
+        <div class="pip-content tp8 bp8">
+            <div class="pip-subhead1">
+                {{ $ctrl.item.id }}
+            </div>
+            <div class="pip-subtitle color-secondary-text">
+                {{::'EVENT_RULE_ID' | translate}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="divider-bottom tm16 bm24"></div>
+
+<div class="pip-ref-list iqs-rule-action-list">
+    <div class="entry-label color-secondary-text bm16">
+        {{ 'RULES_ACTIONS_LABEL' | translate }}
+    </div>
+
+    <div class="entry-empty-label" ng-if="!$ctrl.item.show_journal && !$ctrl.item.incident && !$ctrl.item.send_signal && !$ctrl.item.send_message">
+        {{ 'RULES_ACTIONS_EMPTY_LABEL' | translate }}
+    </div>
+
+    <div class="pip-ref-list-item layout-row layout-align-start-center" ng-if="$ctrl.item.show_journal">
+        <div class="rm8">
+            <md-icon md-svg-icon="iqs:events">
+            </md-icon>
+        </div>
+        <div class="pip-content">
+            <p class="pip-subhead1">
+                {{ ::'RULES_ACTION_REGISTRY_TITLE' | translate }}
+            </p>
+            <p class="pip-subtitle color-secondary-text">
+                {{ ::'RULES_ACTION_REGISTRY_SUBTITLE' | translate }}
+            </p>
+        </div>
+    </div>
+
+    <div class="pip-ref-list-item layout-row layout-align-start-center" ng-if="$ctrl.item.incident">
+        <div class="rm8">
+            <md-icon md-svg-icon="iqs:incident">
+            </md-icon>
+        </div>
+        <div class="pip-content">
+            <p class="pip-subhead1">
+                {{ ::'RULES_ACTION_INCIDENT_TITLE' | translate }}
+            </p>
+            <p class="pip-subtitle color-secondary-text">
+                {{ ::'RULES_ACTION_INCIDENT_SUBTITLE' | translate }}
+            </p>
+        </div>
+    </div>
+
+    <div class="pip-ref-list-item layout-row layout-align-start-center" ng-if="$ctrl.item.send_signal">
+        <div class="rm8 ">
+            <md-icon md-svg-icon="icons:bell-ring">
+            </md-icon>
+        </div>
+        <div class="pip-content ">
+            <p class="pip-subhead1">
+                {{ ::'RULES_ACTION_SIGNAL_TITLE' | translate }}
+            </p>
+            <p class="pip-subtitle color-secondary-text">
+                {{ $ctrl.signalTypeCollection[$ctrl.item.signal].title | translate }}
+            </p>
+        </div>
+    </div>
+
+    <div class="pip-ref-list-item layout-row layout-align-start-center" ng-if="$ctrl.item.send_message && $ctrl.item.recipient_names">
+        <div class="rm8">
+            <md-icon md-svg-icon="icons:message">
+            </md-icon>
+        </div>
+        <div class="pip-content">
+            <p class="pip-subhead1">
+                {{ ::'RULES_ACTION_MESSAGES_TITLE' | translate }}
+            </p>
+            <p class="pip-subtitle color-secondary-text">
+                {{ $ctrl.item.recipient_names }}
+            </p>
+        </div>
+    </div>
+
+    <!-- <div class="pip-ref-list-item layout-row layout-align-start-center" ng-if="$ctrl.item.send_sms">
+        <div class="rm8">
+		    <md-icon md-svg-icon="icons:feedback" >
+			</md-icon>          
+        </div> 
+        <div class="pip-content">
+            <p class="pip-title">
+                {{ ::'RULES_ACTION_SMS_TITLE' | translate }} 
+            </p>
+            <p class="pip-subtitle" ng-if="$ctrl.item.phones && $ctrl.item.phones.length > 0">
+                <span ng-repeat="phone in $ctrl.item.phones track by $index">
+                    {{ phone }} <span ng-if="!$last">, </span>
+                </span>
+            </p>            
+        </div>       
+    </div>       -->
+</div>

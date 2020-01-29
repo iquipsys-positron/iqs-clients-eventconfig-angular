@@ -1,0 +1,44 @@
+<pip-document>
+	<div class="pip-body p24  layout-column flex">
+		<div class="pip-ref-title layout-row layout-align-start-center bp16">
+			<div class="">
+				<md-icon md-svg-icon="{{ $ctrl.severityCollection[$ctrl.item.severity].icon }}" class="{{ $ctrl.severityCollection[$ctrl.item.severity].class }}">
+				</md-icon>
+			</div>
+			<div class="pip-content">
+				<p class="pip-title">
+					{{ $ctrl.item.description }}
+				</p>
+			</div>
+		</div>
+		<md-switch ng-model="$ctrl.item.set_time" aria-label="set_time" ng-disabled="true">
+			{{ ::'EVENTS_TEMPLATES_SET_TIME_LABEL' | translate }}
+		</md-switch>
+		<md-switch ng-model="$ctrl.item.set_object" aria-label="set_object" ng-disabled="true">
+			{{ ::'EVENTS_TEMPLATES_SET_OBJECT_LABEL' | translate }}
+		</md-switch>
+		<md-switch ng-model="$ctrl.item.set_pos" aria-label="set_pos" ng-disabled="true">
+			{{ ::'EVENTS_TEMPLATES_SET_POS_LABEL' | translate }}
+		</md-switch>
+	</div>
+	<div class="pip-footer " style="height: 86px">
+		<div class="pip-action-list w-stretch">
+			<md-button iqs-test-edit class="pip-action-list-item" xxxng-if="$ctrl.accessConfig.editTemplate" ng-click="$ctrl.onEdit()"
+			           ng-disabled="$ctrl.ngDisabled() || !$ctrl.accessConfig.editTemplate">
+
+				<md-icon class="pip-pic" md-svg-icon="icons:pen"></md-icon>
+				<div class="pip-title">
+					{{ ::'EVENTS_TEMPLATES_EDIT' | translate }}
+				</div>
+			</md-button>
+			<md-button iqs-test-delete class="pip-action-list-item" xxxng-if="$ctrl.accessConfig.deleteTemplate" ng-click="$ctrl.onDelete()"
+			           ng-disabled="$ctrl.ngDisabled() || !$ctrl.accessConfig.deleteTemplate">
+
+				<md-icon class="pip-pic" md-svg-icon="icons:trash"></md-icon>
+				<div class="pip-title">
+					{{ ::'EVENTS_TEMPLATES_DELETE' | translate }}
+				</div>
+			</md-button>
+		</div>
+	</div>
+</pip-document>

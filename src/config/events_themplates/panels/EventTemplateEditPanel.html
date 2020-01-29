@@ -1,0 +1,42 @@
+<pip-document>
+	<div class="pip-body p24  layout-column flex">
+		<md-input-container class="md-block">
+			<label>{{ ::'EVENTS_TEMPLATES_LABEL' | translate }}</label>
+			<textarea iqs-test-name ng-model="$ctrl.eventTemplate.description" aria-label="DESCRIPTION" md-select-on-focus
+			          ng-disabled="$ctrl.ngDisabled()">
+
+                    </textarea>
+		</md-input-container>
+
+		<md-input-container class="md-block tm0">
+			<label>{{ ::'EVENT_TEMPLATES_SEVERITY_LABEL' | translate }}</label>
+			<md-select iqs-test-severity class="flex" aria-label="OBJECT" ng-model="$ctrl.eventTemplate.severity" ng-disabled="$ctrl.ngDisabled()">
+				<md-option iqs-test-option-severity ng-repeat="obj in $ctrl.severityCollection  track by $index" ng-value="obj.id">
+					{{ obj.title | translate }}
+				</md-option>
+			</md-select>
+		</md-input-container>
+
+		<md-switch iqs-test-time ng-model="$ctrl.eventTemplate.set_time" aria-label="set_time" ng-disabled="$ctrl.ngDisabled()">
+			{{ ::'EVENTS_TEMPLATES_SET_TIME_LABEL' | translate }}
+		</md-switch>
+		<md-switch iqs-test-objects ng-model="$ctrl.eventTemplate.set_object" aria-label="set_object" ng-disabled="$ctrl.ngDisabled()">
+			{{ ::'EVENTS_TEMPLATES_SET_OBJECT_LABEL' | translate }}
+		</md-switch>
+		<md-switch iqs-test-position ng-model="$ctrl.eventTemplate.set_pos" aria-label="set_pos" ng-disabled="$ctrl.ngDisabled()">
+			{{ ::'EVENTS_TEMPLATES_SET_POS_LABEL' | translate }}
+		</md-switch>
+	</div>
+	<div class="pip-footer " style="height: 86px">
+		<div class="pip-action-list w-stretch">
+			<md-button iqs-test-save class="pip-action-list-item" ng-click="$ctrl.onSaveClick()" ng-disabled="$ctrl.ngDisabled() || !$ctrl.eventTemplate.description">
+				<md-icon class="pip-pic" md-svg-icon="icons:check"></md-icon>
+				<div class="pip-title">{{::'EVENTS_TEMPLATES_SAVE' | translate }}</div>
+			</md-button>
+			<md-button iqs-test-cancel class="pip-action-list-item" ng-click="$ctrl.onCancelClick()" ng-disabled="$ctrl.ngDisabled()">
+				<md-icon class="pip-pic" md-svg-icon="icons:cross"></md-icon>
+				<div class="pip-title">{{::'EVENTS_TEMPLATES_CANCEL' | translate}}</div>
+			</md-button>
+		</div>
+	</div>
+</pip-document>

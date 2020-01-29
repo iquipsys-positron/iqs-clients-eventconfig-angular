@@ -1,0 +1,79 @@
+<pip-document>
+	<md-progress-linear md-mode="indeterminate" style="position: absolute;" ng-show="$ctrl.ngDisabled()">
+	</md-progress-linear>
+	<div class="pip-header bp0 rp24 lp24 tp8 ">
+		<div class="w-stretch ">
+			<div class="pip-ref-title layout-row layout-align-start-center ">
+				<div class="big-icon">
+					<md-icon md-svg-icon="{{ $ctrl.severityCollection[$ctrl.item.severity].icon }}" class="{{ $ctrl.severityCollection[$ctrl.item.severity].class }}">
+					</md-icon>
+				</div>
+				<div class="pip-content">
+					<p class="pip-title bp0">
+						{{ $ctrl.item.name }}
+					</p>
+					<p class="pip-subtitle flex" ng-if="$ctrl.item.interval">
+						{{ ::'RULES_INTERVAL_LABEL' | translate }} {{ $ctrl.item.interval }}
+						{{ ::'RULES_INTERVAL_MEASURE_LABEL' | translate }}
+					</p>
+				</div>
+			</div>
+			<md-tabs md-dynamic-height md-stretch-tabs="auto" md-selected="$ctrl.section" ng-if="$ctrl.pipMedia('gt-sm') || !$ctrl.pipMedia('gt-sm') && $ctrl.details">
+
+				<md-tab label="{{ section.title | translate }}" id="{{ section.id }}" ng-repeat="section in $ctrl.sections track by $index"
+				        ng-click="$ctrl.selectSection(section.id)"></md-tab>
+			</md-tabs>
+		</div>
+	</div>
+
+	<div class="pip-body p24 tp16 layout-column flex">
+		<div class="" ng-include="'config/event_rules/includes/InformationEventRules.html'" ng-if="$ctrl.section == 0">
+		</div>
+		<div class="" ng-include="'config/event_rules/includes/ObjectEventRules.html'" ng-if="$ctrl.section == 1">
+		</div>
+		<div class="" ng-include="'config/event_rules/includes/ZonesEventRules.html'" ng-if="$ctrl.section == 2">
+		</div>
+	</div>
+	<div class="pip-footer " style="height: 86px">
+		<div class="pip-action-list w-stretch">
+			<md-button iqs-test-edit class="pip-action-list-item" ng-click="$ctrl.onEdit()" ng-disabled="$ctrl.ngDisabled() || !$ctrl.accessConfig.editEventRule"
+			           ng-if="$ctrl.section == 0">
+
+				<md-icon class="pip-pic" md-svg-icon="icons:pen"></md-icon>
+				<div class="pip-title">{{ ::'EVENT_RULE_EDIT' | translate }}</div>
+			</md-button>
+			<md-button iqs-test-delete class="pip-action-list-item" ng-click="$ctrl.onDelete()" ng-disabled="$ctrl.ngDisabled() || !$ctrl.accessConfig.deleteEventRule"
+			           ng-if="$ctrl.section == 0">
+
+				<md-icon class="pip-pic" md-svg-icon="icons:trash"></md-icon>
+				<div class="pip-title">{{ ::'EVENT_RULE_DELETE' | translate}}</div>
+			</md-button>
+
+			<md-button class="pip-action-list-item" ng-click="$ctrl.onIncludeObject()" ng-disabled="$ctrl.ngDisabled() || $ctrl.item.all_objects || !$ctrl.accessConfig.editEventRule"
+			           ng-if="$ctrl.section == 1">
+
+				<md-icon class="pip-pic" md-svg-icon="icons:plus"></md-icon>
+				<div class="pip-title">{{ ::'RULES_INCLUDE_OBJECT' | translate }}</div>
+			</md-button>
+			<md-button class="pip-action-list-item" ng-click="$ctrl.onExcludeObject()" ng-disabled="$ctrl.ngDisabled() || !$ctrl.accessConfig.editEventRule"
+			           ng-if="$ctrl.section == 1">
+
+				<md-icon class="pip-pic" md-svg-icon="icons:minus"></md-icon>
+				<div class="pip-title">{{ ::'RULES_EXCLUDE_OBJECT' | translate}}</div>
+			</md-button>
+
+			<md-button class="pip-action-list-item" ng-click="$ctrl.onIncludeZone()" ng-disabled="$ctrl.ngDisabled() || $ctrl.item.all_zones || !$ctrl.accessConfig.editEventRule"
+			           ng-if="$ctrl.section == 2">
+
+				<md-icon class="pip-pic" md-svg-icon="icons:plus"></md-icon>
+				<div class="pip-title">{{ ::'RULES_INCLUDE_ZONE' | translate }}</div>
+			</md-button>
+			<md-button class="pip-action-list-item" ng-click="$ctrl.onExcludeZone()" ng-disabled="$ctrl.ngDisabled() || !$ctrl.accessConfig.editEventRule"
+			           ng-if="$ctrl.section == 2">
+
+				<md-icon class="pip-pic" md-svg-icon="icons:minus"></md-icon>
+				<div class="pip-title">{{ ::'RULES_EXCLUDE_ZONE' | translate}}</div>
+			</md-button>
+		</div>
+	</div>
+</pip-document>
