@@ -28,7 +28,7 @@ class ConfigEventRulesController implements ng.IController {
         private pipScroll: pip.services.IScrollService,
         private pipTranslate: pip.services.ITranslateService,
         private pipConfirmationDialog: pip.dialogs.IConfirmationDialogService,
-        private iqsSite: iqs.shell.ISiteService,
+        private iqsOrganization: iqs.shell.IOrganizationService,
         private iqsEventRulesViewModel: iqs.shell.IEventRulesViewModel,
         private iqsTypeCollectionsService: iqs.shell.ITypeCollectionsService,
         private iqsEventRuleSaveService: IEventRuleSaveService,
@@ -284,7 +284,7 @@ class ConfigEventRulesController implements ng.IController {
         }
 
         if (this.currentState == iqs.shell.States.Add) {
-            item.site_id = this.iqsSite.siteId;
+            item.org_id = this.iqsOrganization.orgId;
             if (item.all_zones) {
                 item.include_zone_ids = [];
             }

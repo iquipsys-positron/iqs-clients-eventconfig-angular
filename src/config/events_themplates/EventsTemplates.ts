@@ -27,7 +27,7 @@ class ConfigEventsTemplatesController implements ng.IController {
         private pipScroll: pip.services.IScrollService,
         private pipConfirmationDialog: pip.dialogs.IConfirmationDialogService,
         private pipTranslate: pip.services.ITranslateService,
-        private iqsSite: iqs.shell.ISiteService,
+        private iqsOrganization: iqs.shell.IOrganizationService,
         private iqsOperationalEventTemplatesViewModel: iqs.shell.IOperationalEventTemplatesViewModel,
         private iqsTypeCollectionsService: iqs.shell.ITypeCollectionsService,
         private iqsEventTemplatesSaveService: IEventTemplatesSaveService,
@@ -274,7 +274,7 @@ class ConfigEventsTemplatesController implements ng.IController {
         }
 
         if (this.currentState == iqs.shell.States.Add) {
-            item.site_id = this.iqsSite.siteId;
+            item.org_id = this.iqsOrganization.orgId;
 
             this.iqsOperationalEventTemplatesViewModel.create(
                 item,

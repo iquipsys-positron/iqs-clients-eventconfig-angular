@@ -18,7 +18,7 @@ angular
     .module('iqsPositronConfigApp', [
         'iqsPositronConfig.Config',
         'iqsPositronConfig.Templates',
-        'iqsSites.Service',
+        'iqsOrganizations.Service',
         'iqsConfig'
     ])
     .controller('iqsPositronConfigAppController', PositronConfigAppController);

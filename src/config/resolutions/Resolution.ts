@@ -26,7 +26,7 @@ class ConfigResolutionsController implements ng.IController {
         private pipScroll: pip.services.IScrollService,
         private pipConfirmationDialog: pip.dialogs.IConfirmationDialogService,
         $rootScope: ng.IRootScopeService,
-        private iqsSite: iqs.shell.ISiteService,
+        private iqsOrganization: iqs.shell.IOrganizationService,
         private iqsResolutionsViewModel: iqs.shell.IResolutionsViewModel,
         private iqsResolutionSaveService: IResolutionSaveService,
         private iqsAccessConfig: iqs.shell.IAccessConfigService,
@@ -271,7 +271,7 @@ class ConfigResolutionsController implements ng.IController {
         }
 
         if (this.currentState == iqs.shell.States.Add) {
-            item.site_id = this.iqsSite.siteId;
+            item.org_id = this.iqsOrganization.orgId;
             this.iqsResolutionsViewModel.create(
                 item,
                 (data: iqs.shell.Resolution) => {

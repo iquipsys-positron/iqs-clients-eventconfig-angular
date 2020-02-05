@@ -40,7 +40,7 @@ let m: any;
 const requires = [
     'iqsEventRules.ViewModel',
     'iqsAccounts.ViewModel',
-    'iqsSites.Service',
+    'iqsOrganizations.Service',
 ];
 
 try {
