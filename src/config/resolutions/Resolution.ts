@@ -362,6 +362,7 @@ function configureConfigResolutionsAccess(
         .module('iqsConfigResolutions', [
             'pipNav', 'iqsResolutions.ViewModel',
 
+            'iqsAccessConfig',
             'iqsResolutionPanel',
             'iqsResolutionEmptyPanel',
             'iqsResolutionEditPanel',

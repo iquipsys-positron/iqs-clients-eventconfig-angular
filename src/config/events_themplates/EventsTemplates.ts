@@ -363,6 +363,7 @@ angular
     .module('iqsConfigEventsTemplates', [
         'pipNav', 'iqsEventTemplates.ViewModel',
 
+        'iqsAccessConfig',
         'iqsEventTemplatePanel',
         'iqsEventTemplateEmptyPanel',
         'iqsEventTemplateEditPanel',

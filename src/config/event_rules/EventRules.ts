@@ -389,6 +389,7 @@ function configureConfigEventRulesAccess(
 
             'iqsMultiSelectDialog',
 
+            'iqsAccessConfig',
             'iqsEventRuleEmptyPanel',
             'iqsDetailsEventRulePanel',
             // 'iqsActionEditEventRulePanel',
